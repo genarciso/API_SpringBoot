@@ -7,6 +7,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 @Table(name = "aerogerador")
 public class Aerogerador extends AbstractEntity{
@@ -23,7 +26,8 @@ public class Aerogerador extends AbstractEntity{
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional=false)
 	@JoinColumn(name="parque_eolico_id")
-	private ParqueEolico parqueEolico;
+    @OnDelete(action = OnDeleteAction.CASCADE)
+	private ParqueEolico parque;
 
 	public String getNome() {
 		return nome;
@@ -73,11 +77,12 @@ public class Aerogerador extends AbstractEntity{
 		this.diametroVarrdura = diametroVarrdura;
 	}
 
-	public ParqueEolico getParqueEolico() {
-		return parqueEolico;
+	public ParqueEolico getParque() {
+		return parque;
 	}
 
-	public void setParqueEolico(ParqueEolico parqueEolico) {
-		this.parqueEolico = parqueEolico;
+	public void setParque(ParqueEolico parque) {
+		this.parque = parque;
 	}
+
 }

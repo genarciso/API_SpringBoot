@@ -7,9 +7,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
 @Table(name = "parque_eolico")
 public class ParqueEolico extends AbstractEntity{
+	
 	@Column(nullable = false)
 	private String nome;
 	private int latitude;
@@ -19,13 +23,14 @@ public class ParqueEolico extends AbstractEntity{
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional=false)
 	@JoinColumn(name="complexo_eolico_id")
-	private ComplexoEolico complexoEolico;
+    @OnDelete(action = OnDeleteAction.CASCADE)
+	private ComplexoEolico complexo;
 	
 	public ComplexoEolico getComplexoEolico() {
-		return complexoEolico;
+		return complexo;
 	}
-	public void setComplexoEolicoId(ComplexoEolico complexoEolico) {
-		this.complexoEolico = complexoEolico;
+	public void setComplexoEolico(ComplexoEolico complexo) {
+		this.complexo = complexo;
 	}
 	public String getNome() {
 		return nome;

@@ -2,10 +2,12 @@ package com.example.api.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
-
-@Table(name = "complexo_eolico")
 @Entity
+@Table(name = "complexo_eolico")
 public class ComplexoEolico extends AbstractEntity{
 	@Column(nullable = false)
 	private String nome;
